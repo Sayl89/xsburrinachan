@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>67 BRAINROT 67</title>
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            cursor: crosshair;
+            background-color: magenta;
+            animation: epileptik 0.15s infinite;
+            user-select: none;
+        }
+
+        @keyframes epileptik {
+            0% { background-color: #ff0000; color: #00ff00; }
+            16% { background-color: #00ff00; color: #0000ff; }
+            32% { background-color: #0000ff; color: #ff00ff; }
+            48% { background-color: #ffff00; color: #ff0000; }
+            64% { background-color: #ff00ff; color: #00ffff; }
+            80% { background-color: #00ffff; color: #ffff00; }
+            100% { background-color: #ff0000; color: #00ff00; }
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(2); }
+            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .center-spin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 20rem;
+            font-weight: 900;
+            text-shadow: 10px 10px 0px #000, -10px -10px 0px #fff;
+            animation: spin 0.4s linear infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .marquee-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        marquee {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .bouncing-67 {
+            position: absolute;
+            font-size: 5rem;
+            font-weight: 900;
+            pointer-events: none;
+            animation: shake 0.2s infinite;
+            z-index: 50;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        .click-spawn {
+            position: absolute;
+            font-weight: 900;
+            pointer-events: none;
+            animation: shake 0.1s infinite;
+            z-index: 100;
+            text-shadow: 5px 5px 0px black;
+            transform-origin: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-container">
+        <marquee scrollamount="50">67 67 67 SIGMA 67 SKIBIDI 67 67 67 GYATT 67 RIZZ 67</marquee>
+        <marquee scrollamount="70" direction="right">67 67 BRAINROT 67 67 67 OHIO 67 67 67 67 67 67</marquee>
+        <marquee scrollamount="100">67 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67</marquee>
+        <marquee scrollamount="40" direction="right" style="font-size: 8rem;">67 67 SIGMA 67</marquee>
+        <marquee scrollamount="80">67 67 67 SKIBIDI TOILET 67 67 67 67 67 67 67</marquee>
+    </div>
+
+    <div class="center-spin">67</div>
+
+    <script>
+        const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FFFFFF', '#000000'];
+        
+        function getRandomColor() {
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Bouncing 67s Logic
+        const bouncers = [];
+        const numBouncers = 15;
+
+        for (let i = 0; i < numBouncers; i++) {
+            const el = document.createElement('div');
+            el.className = 'bouncing-67';
+            el.innerText = '67';
+            el.style.color = getRandomColor();
+            document.body.appendChild(el);
+
+            bouncers.push({
+                el: el,
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                vx: (Math.random() - 0.5) * 40, // Super fast
+                vy: (Math.random() - 0.5) * 40,
+                size: 80 // approximate width/height in px for collision
+            });
+        }
+
+        function updateBouncers() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            bouncers.forEach(b => {
+                b.x += b.vx;
+                b.y += b.vy;
+
+                // Bounce off edges
+                if (b.x <= 0 || b.x + b.size >= w) {
+                    b.vx *= -1;
+                    b.x = Math.max(0, Math.min(b.x, w - b.size));
+                    b.el.style.color = getRandomColor(); // Change color on bounce
+                }
+                if (b.y <= 0 || b.y + b.size >= h) {
+                    b.vy *= -1;
+                    b.y = Math.max(0, Math.min(b.y, h - b.size));
+                    b.el.style.color = getRandomColor(); // Change color on bounce
+                }
+
+                b.el.style.left = b.x + 'px';
+                b.el.style.top = b.y + 'px';
+            });
+
+            requestAnimationFrame(updateBouncers);
+        }
+
+        // Start bouncing
+        requestAnimationFrame(updateBouncers);
+
+        document.addEventListener('click', (e) => {
+            const spawn = document.createElement('div');
+            spawn.className = 'click-spawn';
+            spawn.innerText = '67';
+            
+            // Randomize massive size, rotation, and color
+            const size = Math.floor(Math.random() * 200) + 100; // 100px to 300px
+            const rotation = Math.floor(Math.random() * 360);
+            
+            spawn.style.fontSize = size + 'px';
+            spawn.style.color = getRandomColor();
+            
+            // Center on mouse click
+            spawn.style.left = (e.clientX - size/2) + 'px';
+            spawn.style.top = (e.clientY - size/2) + 'px';
+            
+            spawn.style.transform = `rotate(${rotation}deg)`;
+
+            document.body.appendChild(spawn);
+        });
+
+        // Prevent default drag behaviors that might interrupt the spam
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+    </script>
+</body>
+</html>
